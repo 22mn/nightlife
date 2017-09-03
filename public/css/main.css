@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Serif');
+body {
+	font-family: 'PT Serif', serif;
+	background-color: #fcfcfc;
+}
+
+
+/*app name*/
+.head {
+    font-variant: small-caps;
+    color : #88cc00;
+    text-align: center;
+}
+
+/* Well & All display box*/
+.well-lg, .btn-lg, .btn-default, .input-lg{
+	background-color: rgba(245, 245, 245, 0.2);
+}
+
+.input-lg{
+    color: #88cc00;
+}
+
+/* image and rating*/
+div.item {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 120px;
+}
+img {
+    width: 100px;
+    height: 100px;
+    background-color: #f7f7f7;
+}
+.caption {
+    display: block;
+    margin-top: 5px;
+    color: #88cc00;
+    font-size: 16px;
+}
+
+/*name*/
+
+.name a{
+	font-size: 22px;
+	text-decoration: none;
+	color: #88cc00;
+}
+.name a:hover {
+	color: #aa80ff;
+}
+
+.phone a {
+    color:#99ffbb;
+}
+
+.going {
+    color: #99e600;
+}
+
+/*map*/
+
+div[id^="map_"] {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 10px;
+    background-color: rgba(245, 245, 245, 0.2);
+}
+
+.map{
+    text-decoration: none;
+    color: #99e600;
+    display: block;
+    padding-top:3px;
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+.map:hover, .map:active,.map:visited{
+    text-decoration: none;
+    color: #aa80ff;
+}
+
+/*site owner*/
+#siteInfo,#siteWish  {
+    font-variant: small-caps;
+    font-size : 13px;
+    font-family: 'PT Serif', serif;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+#siteWish {
+    font-size : 11px;
+}
+
+#info {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 4px;
+    font-size: 20px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    margin : 1px;
+    border-radius: 50%;
+    height: 33px;
+    color: #00ffff;
+    opacity: 0.5;
+}
