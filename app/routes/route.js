@@ -2,12 +2,13 @@
 var yelp = require("yelp-fusion");
 var path = process.cwd();
 var pureList= require(path+"/app/controller/yelp-query.server.js");
+var ids = require(path+"/app/controller/yelp-query-id.js");
 var Shop = require(path+"/app/models/shop.js");
 
 
 module.exports = function(app,passport){
-	
-	var limit=50, location="california",skip=0;
+	var status = false;
+	var limit=30, location="california",skip=0;
 	
 	function yelpResult(req,res,next){
 		var searchRequest = {
@@ -51,6 +52,7 @@ module.exports = function(app,passport){
 	app.route("/:city")
 			.get(yelpResult,function(req,res){
 				var data = pureList(req.body.result);   // yelp-result modified	
+				var books = [];
 				data.forEach(function(item){
 					Shop.findOne({id:item[8]},function(err,ok){
 						if (err) {console.log(err)}
@@ -64,26 +66,47 @@ module.exports = function(app,passport){
 						}
 					})
 				})
-		
-				res.render("city",{obj:data});      // render city-template				 
+				if(req.user){
+					status = true;
+				}
+			
+				res.render("city",{obj:data,status:status});      // render city-template				 
 			})
 
 	app.route("/user/going")
 			.post(isLoggedIn,function(req,res){
 				var find = {"id":req.body.id,"book":req.user.twitter.id};
 				var update = {$pull:{"book":req.user.twitter.id}}
-				Shop.findOneAndUpdate(find,update,{"new":true},function(err,ok){					
+				Shop.findOneAndUpdate(find,update,{new:true},function(err,ok){					
 					if (err) {console.log(err)}
 					if (ok) {
 						return res.json({"count":ok.book.length});
 					}
 					find = {"id":req.body.id};
 					update = {$push:{"book":req.user.twitter.id}}
-					Shop.findOneAndUpdate(find,update,{"new":true},function(err,okk){
+					Shop.findOneAndUpdate(find,update,{new:true},function(err,okk){
 						if (err) {console.log(err)}
 						return res.json({"count":okk.book.length});
 					})
 
+				})
+				
+			})
+	app.route("/user/books")
+			.get(yelpResult,function(req,res){
+				var data = ids(req.body.result);
+				var books = [];
+				data.forEach(function(i){
+					Shop.findOne({id:i},function(err,ok){
+						if (err) throw err;
+						if (ok){
+							books.push(ok.book.length);}
+						if (data.indexOf(i) == data.length-1){
+						res.json(books);
+						
+						}
+						
+					})
 				})
 				
 			})
