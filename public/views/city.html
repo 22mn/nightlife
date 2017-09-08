@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<link rel= "shortcut icon" href="https://res.cloudinary.com/mgjean/image/upload/v1504486446/bottle.ico">
   	<link rel="stylesheet" type="text/css" href="/public/css/main.css">
 </head>
 <body style="background-image:url('/public/img/bar2.jpg')">
@@ -18,7 +19,7 @@
 	<div class="col-sm-8">
 	<form action="/" method="POST">
 		<div class="input-group">
-			<input type="text" placeholder="Location ..." class="form-control input-lg" name="city" autocomplete="off" autofocus>
+			<input type="text" placeholder="Location ..." class="form-control input-lg" name="city" autocomplete="off" >
 			<div class="input-group-btn">
 				<button class="btn btn-default btn-lg" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 			</div>
@@ -27,7 +28,7 @@
 	</div>
 		
 	<div class="col-sm-2">
-		<a href="/auth/twitter" type="button" class="btn btn-success btn-lg">Twitter Login</a>
+		<a href="/auth/twitter" type="button" class="btn btn-success btn-lg twitt">Twitter Login</a>
 	</div>
 
 	</div>
@@ -48,7 +49,7 @@
 					<p class="phone"><a href="tel:{{i[5]}}">{{i[5]}}</a></p>
 					</div>
 					<div class="col-sm-2">
-						<button id="{{i[8]}}"  type="button" class="btn btn-default going">Going : <span>0</span></button>
+						<button id="{{i[8]}}"  type="button" class="btn btn-default going">Going : <span id={{obj.indexOf(i)}}><div class="loader"></div></span></button>
 					</div>
 
 				</div>
@@ -69,6 +70,13 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNbfHXAQBaQ49brt0Li3E9HhlTC5B4EkU&callback=tester">
 </script>
 <script >
+	console.log("{{status}}");
+	if ("{{status}}"=="true"){
+		$(".twitt").hide();
+	}
+	else{
+		$(".twitt").show();
+	}
 	function tester(){
 		$("[href^='#map_']").click(function(){
 		var lat = $(this).attr("lat");
@@ -82,6 +90,21 @@
 		}
 		return initMap();
 	})}
+		setTimeout(function(){(function(){
+			$.ajax({
+				url: '/user/books',
+				type: 'GET',
+				dataType: 'json',
+				success:function(data){
+					for (var i = 0 ; i < data.length;i++){
+						var sel = "#"+i;
+						$(sel).text(data[i]);
+					}
+				}
+			})
+		}())},7000);
+
+
 </script>
 </body>
 </html>
