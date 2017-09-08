@@ -4,6 +4,13 @@ body {
 	background-color: #fcfcfc;
 }
 
+.container {
+    text-align: center;
+}
+
+.twitt {
+    margin-top:  2px;
+}
 
 /*app name*/
 .head {
@@ -17,6 +24,9 @@ body {
 	background-color: rgba(245, 245, 245, 0.2);
 }
 
+/*.going{
+    background-color: rgba(0, 0, 102, 0.6);
+}*/
 .input-lg{
     color: #88cc00;
 }
@@ -36,7 +46,7 @@ img {
 .caption {
     display: block;
     margin-top: 5px;
-    color: #88cc00;
+    color: #cccc00;
     font-size: 16px;
 }
 
@@ -45,7 +55,7 @@ img {
 .name a{
 	font-size: 22px;
 	text-decoration: none;
-	color: #88cc00;
+	color: #33d6ff;
 }
 .name a:hover {
 	color: #aa80ff;
@@ -56,7 +66,7 @@ img {
 }
 
 .going {
-    color: #99e600;
+    color: #00b8e6;
 }
 
 /*map*/
@@ -70,7 +80,7 @@ div[id^="map_"] {
 
 .map{
     text-decoration: none;
-    color: #99e600;
+    color: #99cc00;
     display: block;
     padding-top:3px;
     padding-bottom: 10px;
@@ -80,6 +90,33 @@ div[id^="map_"] {
     text-decoration: none;
     color: #aa80ff;
 }
+
+
+
+/*going loader*/
+.loader {
+  margin-left: 20px;
+  border:2px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 2px solid #00b8e6;
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
 
 /*site owner*/
 #siteInfo,#siteWish  {
