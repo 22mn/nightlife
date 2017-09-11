@@ -67,7 +67,7 @@
 
 <script src="/controller/helper.client.js"></script>
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNbfHXAQBaQ49brt0Li3E9HhlTC5B4EkU&callback=tester">
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=display">
 </script>
 <script >
 	console.log("{{status}}");
@@ -77,7 +77,7 @@
 	else{
 		$(".twitt").show();
 	}
-	function tester(){
+	function display(){
 		$("[href^='#map_']").click(function(){
 		var lat = $(this).attr("lat");
 		var lng = $(this).attr("lng");
